@@ -38,7 +38,7 @@ public class Autor implements Serializable {
 	@JoinColumn(name="ID_EDITORA") 
 	private Editora editora;
 
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="pedido") 
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="autor") 
 	private Set<Livro> livros = new LinkedHashSet<Livro>();
 
 	public Editora getEditora() {

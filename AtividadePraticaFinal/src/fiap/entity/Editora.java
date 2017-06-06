@@ -27,7 +27,7 @@ public class Editora implements Serializable {
 	@Column(name="NOME", length=45) 
 	private String nome;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="cliente")
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="editora")
 	private Set<Autor> autores = new LinkedHashSet<Autor>();
 
 	public int getId() {

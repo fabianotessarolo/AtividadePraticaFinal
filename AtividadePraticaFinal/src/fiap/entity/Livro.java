@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="itens")
+@Table(name="livro")
 public class Livro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class Livro implements Serializable {
 	private String nome;
 	
 	@ManyToOne(fetch=FetchType.LAZY) 
-	@JoinColumn(name="ID_EDITORA") 
+	@JoinColumn(name="ID_AUTOR") 
 	private Autor autor;
 
 	public int getId() {
