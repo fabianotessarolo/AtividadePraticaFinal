@@ -1,7 +1,8 @@
 package fiap.entity;
 
 import java.io.Serializable;
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,7 @@ public class Editora implements Serializable {
 	private String nome;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="editora")
-	private Set<Autor> autores = new LinkedHashSet<Autor>();
+	private List<Autor> autores = new ArrayList<Autor>();
 
 	public int getId() {
 		return id;
@@ -46,11 +47,11 @@ public class Editora implements Serializable {
 		this.nome = nome;
 	}
 
-	public Set<Autor> getAutores() {
+	public List<Autor> getAutores() {
 		return autores;
 	}
 
-	public void setAutores(Set<Autor> autores) {
+	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
 	}
 }

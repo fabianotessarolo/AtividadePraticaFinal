@@ -1,13 +1,11 @@
 package fiap.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="autor")
@@ -39,7 +35,23 @@ public class Autor implements Serializable {
 	private Editora editora;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="autor") 
-	private Set<Livro> livros = new LinkedHashSet<Livro>();
+	private List<Livro> livros = new ArrayList<>();
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public Editora getEditora() {
 		return editora;
@@ -49,11 +61,12 @@ public class Autor implements Serializable {
 		this.editora = editora;
 	}
 
-	public Set<Livro> getLivros() {
+	public List<Livro> getLivros() {
 		return livros;
 	}
 
-	public void setLivros(Set<Livro> livros) {
+	public void setLivros(List<Livro> livros) {
 		this.livros = livros;
 	}
+
 }
