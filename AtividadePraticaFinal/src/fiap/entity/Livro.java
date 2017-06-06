@@ -54,6 +54,11 @@ public class Livro implements Serializable {
 		this.autor = autor;
 	}
 
+	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", nome=" + nome + "]";
+	}
+
 }
 
 

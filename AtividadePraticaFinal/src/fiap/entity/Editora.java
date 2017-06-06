@@ -3,7 +3,6 @@ package fiap.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,4 +53,10 @@ public class Editora implements Serializable {
 	public void setAutores(List<Autor> autores) {
 		this.autores = autores;
 	}
+
+	@Override
+	public String toString() {
+		return "Editora [id=" + id + ", nome=" + nome + "]";
+	}
+	
 }

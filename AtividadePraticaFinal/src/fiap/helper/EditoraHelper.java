@@ -15,7 +15,7 @@ public class EditoraHelper {
 		this.em = em;
 	}
 
-	public void salvar(Editora editora) throws Exception {
+	public Editora salvar(Editora editora) throws Exception {
 		try {
 			em.getTransaction().begin();
 			em.persist(editora);
@@ -25,6 +25,7 @@ public class EditoraHelper {
 			// } finally {
 			// em.close();
 		}
+		return editora;
 	}
 
 	@SuppressWarnings("unchecked")
