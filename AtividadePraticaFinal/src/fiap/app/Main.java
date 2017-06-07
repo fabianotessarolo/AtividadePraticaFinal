@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import fiap.helper.AutorHelper;
 import fiap.helper.EditoraHelper;
 import fiap.helper.LivroHelper;
+
 /**
  * 
  * @author RM37981 / RM31863
@@ -19,7 +20,7 @@ public class Main {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("atividade-pratica-final");
 		EntityManager em = emf.createEntityManager();
-		
+
 		StringBuilder builder = new StringBuilder();
 		boolean sair = false;
 		boolean voltar = false;
@@ -30,10 +31,10 @@ public class Main {
 			String op = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Atividade",
 					JOptionPane.PLAIN_MESSAGE, null, opcoes, "A-Editora");
 			System.out.println("Comeco");
+			System.out.println(op);
 			switch (op.substring(0, 1)) {
 
 			case "A":
-
 				while (!voltar) {
 					System.out.println("CaseA");
 					Object[] acoes = { "1-Criar Editora", "2-Listar Editora", "3-Buscar Editora", "4-Alterar Editora",
@@ -41,7 +42,7 @@ public class Main {
 					String ac = (String) JOptionPane.showInputDialog(null, "Escolha uma ação:", "Editora",
 							JOptionPane.PLAIN_MESSAGE, null, acoes, "1-Criar Editora");
 					EditoraHelper dao = new EditoraHelper(em);
-					
+
 					switch (ac.substring(0, 1)) {
 
 					case "1":
@@ -73,7 +74,8 @@ public class Main {
 						break;
 					}
 				}
-				break;			
+
+			break;
 			case "B":
 				while (!voltar) {
 					System.out.println("CaseB");
@@ -81,9 +83,8 @@ public class Main {
 					String ac = (String) JOptionPane.showInputDialog(null, "Escolha uma ação:", "Autores",
 							JOptionPane.PLAIN_MESSAGE, null, acoes, "1-Listar Autores");
 					AutorHelper dao = new AutorHelper(em);
-					
+					System.out.println(ac);
 					switch (ac.substring(0, 1)) {
-
 
 					case "1":
 						builder = new StringBuilder();
@@ -101,9 +102,7 @@ public class Main {
 					}
 				}
 				break;
-				
-				
-				
+
 			case "C":
 				while (!voltar) {
 					System.out.println("CaseC");
@@ -111,9 +110,8 @@ public class Main {
 					String ac = (String) JOptionPane.showInputDialog(null, "Escolha uma ação:", "Livros",
 							JOptionPane.PLAIN_MESSAGE, null, acoes, "1-Listar Livros");
 					LivroHelper dao = new LivroHelper(em);
-					
-					switch (ac.substring(0, 1)) {
 
+					switch (ac.substring(0, 1)) {
 
 					case "1":
 						builder = new StringBuilder();
@@ -129,19 +127,16 @@ public class Main {
 						voltar = true;
 						break;
 					}
+					break;
 				}
 				break;
 			default:
 				sair = true;
 				break;
-			}	
+			}
 		}
-		
-
 		System.out.println("FIM");
-		
-	}
 
-	
+	}
 
 }
