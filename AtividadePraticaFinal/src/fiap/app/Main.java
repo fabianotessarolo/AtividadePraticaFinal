@@ -26,7 +26,7 @@ public class Main {
 		boolean voltar = false;
 
 		while (!sair) {
-
+			voltar = false;
 			Object[] opcoes = { "A-Editora", "B-Autor", "C-Livro", "0-Sair" };
 			String op = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Atividade",
 					JOptionPane.PLAIN_MESSAGE, null, opcoes, "A-Editora");
