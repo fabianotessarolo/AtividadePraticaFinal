@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 import fiap.entity.Autor;
@@ -13,76 +11,9 @@ import fiap.entity.Editora;
 import fiap.entity.Livro;
 import fiap.helper.EditoraHelper;
 
-public class CadastroEditora {
+public class EditoraApp {
 
-	public static void main(String[] args) {
-
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("atividade-pratica-final");
-		EntityManager em = emf.createEntityManager();
-		EditoraHelper dao = new EditoraHelper(em);
-		StringBuilder builder = new StringBuilder();
-		boolean sair = false;
-		boolean voltar = false;
-
-		while (!sair) {
-
-			Object[] opcoes = { "A-Editora", "B-Autor", "C-Livro", "0-Sair" };
-			String op = (String) JOptionPane.showInputDialog(null, "Escolha uma opção:", "Atividade",
-					JOptionPane.PLAIN_MESSAGE, null, opcoes, "A-Editora");
-
-			switch (op.substring(0, 1)) {
-
-			case "A":
-
-				while (!voltar) {
-
-					Object[] acoes = { "1-Criar Editora", "2-Listar Editora", "3-Buscar Editora", "4-Alterar Editora",
-							"5-Remover Editora", "9-Voltar" };
-					String ac = (String) JOptionPane.showInputDialog(null, "Escolha uma ação:", "Editora",
-							JOptionPane.PLAIN_MESSAGE, null, acoes, "1-Criar Editora");
-
-					switch (ac.substring(0, 1)) {
-
-					case "1":
-						builder = new StringBuilder();
-						montarEditora(em, builder);
-						break;
-
-					case "2":
-						builder = new StringBuilder();
-						listarEditora(dao, builder);
-						break;
-
-					case "3":
-						builder = new StringBuilder();
-						buscarEditora(dao, builder);
-						break;
-
-					case "4":
-						builder = new StringBuilder();
-						editaEditora(dao, builder);
-						break;
-
-					case "5":
-						removerEditora(dao);
-						break;
-
-					default:
-						voltar = true;
-						break;
-					}
-				}
-				break;
-
-			default:
-				sair = true;
-				break;
-			}
-		}
-
-	}
-
-	private static void montarEditora(EntityManager em, StringBuilder builder) {
+	protected static void montarEditora(EntityManager em, StringBuilder builder) {
 		String nomeEditora = "";
 		String nomeAutor = "";
 		String nomeLivro = "";
@@ -133,7 +64,7 @@ public class CadastroEditora {
 		JOptionPane.showMessageDialog(null, builder.toString(), "Alterar Editora", 1);
 	}
 
-	private static Editora incluirEditora(EntityManager em, Editora editora) {
+	protected static Editora incluirEditora(EntityManager em, Editora editora) {
 		EditoraHelper dao = new EditoraHelper(em);
 		try {
 			return dao.salvar(editora);
@@ -143,7 +74,7 @@ public class CadastroEditora {
 		}
 	}
 
-	private static void listarEditora(EditoraHelper dao, StringBuilder builder) {
+	protected static void listarEditora(EditoraHelper dao, StringBuilder builder) {
 		List<Editora> editoras = dao.listar();
 
 		if (!editoras.isEmpty()) {
@@ -164,7 +95,7 @@ public class CadastroEditora {
 
 	}
 
-	private static void buscarEditora(EditoraHelper dao, StringBuilder builder) {
+	protected static void buscarEditora(EditoraHelper dao, StringBuilder builder) {
 		int id;
 		String cod = "";
 		while (cod.isEmpty()) {
@@ -189,7 +120,7 @@ public class CadastroEditora {
 		}
 	}
 
-	private static void editaEditora(EditoraHelper dao, StringBuilder builder) {
+	protected static void editaEditora(EditoraHelper dao, StringBuilder builder) {
 		int id;
 		String cod = "";
 		while (cod.isEmpty()) {
@@ -218,7 +149,7 @@ public class CadastroEditora {
 		}
 	}
 
-	private static void removerEditora(EditoraHelper dao) {
+	protected static void removerEditora(EditoraHelper dao) {
 		int id;
 		String cod = "";
 		while (cod.isEmpty()) {
@@ -236,5 +167,6 @@ public class CadastroEditora {
 			JOptionPane.showMessageDialog(null, "Registro não foi encontrado.", "Remover Editora", 1);
 		}
 	}
-
+	
+	
 }
